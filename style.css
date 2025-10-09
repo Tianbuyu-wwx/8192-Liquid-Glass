@@ -28,10 +28,148 @@ h1{font-size:64px;font-weight:700;background:linear-gradient(135deg,#fff,rgba(25
 .tile-8192{background:#FFC0CB;font-size:24px;color:#333;animation:glow 2s ease-in-out infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 20px rgba(255,215,0,.7)}50%{box-shadow:0 0 40px rgba(255,215,0,1)}}
 .controls{margin-top:24px;display:flex;gap:12px;justify-content:center}
-button{padding:12px 28px;border:none;border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-weight:600;cursor:pointer;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);transition:.2s;}
-button:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+button, #difficulty{padding:12px 28px;border:none;border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-weight:600;cursor:pointer;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2);transition:.2s;appearance:none;-webkit-appearance:none;outline:none;}
+button:hover, #difficulty:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+button:active, #difficulty:active{transform:translateY(0)}
+#difficulty{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3 4L6 7L9 4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:40px;}
+
+/* 为下拉菜单添加玻璃效果 */
+#difficulty option {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+}
+
+#difficulty option:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#difficulty option:checked {
+    background: rgba(255, 255, 255, 0.2);
+}
 .overlay{position:fixed;inset:0;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);z-index:50;}
 .modal{background:rgba(255,255,255,.1);backdrop-filter:blur(35px);padding:40px;border-radius:24px;border:1px solid rgba(255,255,255,.2);color:#fff;text-align:center;}
 .modal h2{font-size:40px;margin-bottom:16px;-webkit-background-clip:text;background-clip:text;background:linear-gradient(135deg,#fff,rgba(255,255,255,.8));-webkit-text-fill-color:transparent;}
-@media(max-width:600px){.grid{grid-template-columns:repeat(4,70px);grid-template-rows:repeat(4,70px);gap:8px}.cell,.tile{width:70px;height:70px;font-size:24px;border-radius:14px}.tile-128,.tile-256,.tile-512{font-size:20px}.tile-1024,.tile-2048,.tile-4096,.tile-8192{font-size:18px}}
+
+/* 日志窗口样式 */
+.logs-container {
+  position: fixed;
+  top: 50%;
+  right: 80px; /* 略微左移，避免紧贴右侧 */
+  width: 320px; /* 调整窗口宽度，使其更美观 */
+  max-height: 70vh; /* 调整高度，使其更美观 */
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(31, 38, 135, 0.3);
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.logs-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logs-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.logs-controls {
+  display: flex;
+  gap: 8px;
+}
+
+#clear-logs, #close-logs {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+
+
+#close-logs:hover {
+  background: rgba(237, 85, 101, 0.7); /* 退出按钮使用红色调，增加辨识度 */
+}
+
+#clear-logs:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.logs-content {
+  padding: 15px;
+  overflow-y: auto;
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.logs-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.logs-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.logs-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.logs-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.log-entry {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.log-time {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  margin-right: 8px;
+}
+
+.log-info {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.log-decision {
+  color: #8F7AFC;
+  font-weight: 600;
+}
+
+.log-score {
+  color: #FFD1DC;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+  .logs-container {
+    width: 280px;
+    right: 30px;
+  }
+}
+
 /* Liquid Glass效果灵感来源于苹果公司的设计语言，此处仅为学习与个人项目演示目的进行视觉实现，并未用于任何商业用途。*/
