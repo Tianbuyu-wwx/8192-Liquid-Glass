@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>仿液态玻璃版8192</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,6 +12,7 @@
     <div class="scoreboard">
       <div class="score"><div class="label">分数</div><div class="value" id="score">0</div></div>
       <div class="score"><div class="label">最高</div><div class="value" id="best">0</div></div>
+      <div class="score"><div class="label">步数</div><div class="value" id="steps">0</div></div>
     </div>
     <div class="board">
       <div class="grid"></div>
@@ -20,11 +20,42 @@
     <div class="controls">
       <button id="new">新游戏</button>
       <button id="ai-toggle">AI运行</button>
+      <select id="difficulty">
+        <option value="easy">简单</option>
+        <option value="normal" selected>普通</option>
+        <option value="hard">困难</option>
+      </select>
     </div>
   </div>
   <div class="overlay" id="won"></div>
   <div class="overlay" id="over"></div>
   <script src="script.js"></script>
     <script src="autoPlayer.js"></script>
+    
+    <!-- 日志窗口容器 -->
+    <div class="logs-container" id="logs-container">
+      <div class="logs-header">
+        <h3>AI运行日志</h3>
+        <div class="logs-controls">
+          <button id="clear-logs">清空</button>
+          <button id="close-logs">退出</button>
+        </div>
+      </div>
+      <div class="logs-content" id="logs-content"></div>
+    </div>
+    
+    <!-- 音效元素 -->
+    <audio id="move-sound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUYA" type="audio/wav">
+    </audio>
+    <audio id="merge-sound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRoQGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdwA" type="audio/wav">
+    </audio>
+    <audio id="win-sound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRoYGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YfYA" type="audio/wav">
+    </audio>
+    <audio id="gameover-sound" preload="auto">
+      <source src="data:audio/wav;base64,UklGRnwGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0Yf4A" type="audio/wav">
+    </audio>
 </body>
 </html>
