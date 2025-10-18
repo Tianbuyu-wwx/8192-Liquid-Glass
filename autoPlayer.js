@@ -631,7 +631,9 @@
             btn.style.backgroundColor = '';
         });
         
-        // 窗口失焦时暂停AI，避免后台消耗资源
+        // 移除了窗口失焦时暂停AI的功能，使AI可以在后台继续运行
+        // 如果需要限制后台运行，可以取消下面的注释
+        /*
         window.addEventListener('blur', () => {
             if (window.autoPlayer.isRunning()) {
                 window._autoPlayerWasRunning = true;
@@ -641,7 +643,6 @@
             }
         });
         
-        // 窗口聚焦时恢复AI运行
         window.addEventListener('focus', () => {
             if (window._autoPlayerWasRunning) {
                 delete window._autoPlayerWasRunning;
@@ -651,5 +652,6 @@
                 toggleAIRunningClass(true);
             }
         });
+        */
     });
 })();

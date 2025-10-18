@@ -172,4 +172,230 @@ button:active, #difficulty:active{transform:translateY(0)}
   }
 }
 
+/* 完全玻璃效果主题 - 基于参考文件夹的实现 */
+.theme-glass .tile {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  will-change: transform, left, top;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transition: transform 0.18s cubic-bezier(0.39, 0.575, 0.565, 1),
+              left 0.18s cubic-bezier(0.39, 0.575, 0.565, 1),
+              top 0.18s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+/* 数字渐变玻璃效果 - 模拟完全玻璃效果文件夹中的实现 */
+.theme-glass .tile-2 { background: rgba(255, 255, 255, 0.15); color: #fff; }
+.theme-glass .tile-4 { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.theme-glass .tile-8 { background: rgba(222, 235, 247, 0.25); color: #fff; }
+.theme-glass .tile-16 { background: rgba(201, 224, 246, 0.3); color: #fff; }
+.theme-glass .tile-32 { background: rgba(173, 216, 230, 0.35); color: #fff; }
+.theme-glass .tile-64 { background: rgba(135, 206, 235, 0.4); color: #fff; }
+.theme-glass .tile-128 { background: rgba(135, 206, 250, 0.45); color: #fff; font-size: 28px; }
+.theme-glass .tile-256 { background: rgba(135, 206, 255, 0.5); color: #fff; font-size: 28px; }
+.theme-glass .tile-512 { background: rgba(135, 206, 255, 0.6); color: #fff; font-size: 28px; }
+.theme-glass .tile-1024 { background: rgba(135, 206, 255, 0.7); color: #fff; font-size: 24px; }
+.theme-glass .tile-2048 { background: rgba(135, 206, 255, 0.8); color: #fff; font-size: 24px; }
+.theme-glass .tile-4096 { background: rgba(123, 104, 238, 0.8); color: #fff; font-size: 24px; }
+
+/* 8192方块的特殊样式 - 优化发光动画性能 */
+.theme-glass .tile-8192 {
+  background: #FFC0CB;
+  font-size: 24px;
+  color: #333;
+  animation: glow 2s ease-in-out infinite;
+  backdrop-filter: blur(20px);
+}
+
+/* 合并方块动画 - 优化性能 */
+.theme-glass .tile-merged {
+  animation: merge-pop 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+/* 玻璃主题下优化游戏板容器样式 */
+.theme-glass .board {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(45px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(255, 255, 255, 0.4) inset;
+}
+
+/* 玻璃主题下优化单元格样式 */
+.theme-glass .cell {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========================== 暗黑霓虹灯主题 ========================== */
+.theme-neon .tile {
+  color: #fff;
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 10px currentColor;
+  border: 2px solid currentColor;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.18s ease;
+}
+
+.theme-neon .tile-2 { color: #00FFFF; }
+.theme-neon .tile-4 { color: #00FF00; }
+.theme-neon .tile-8 { color: #FFFF00; }
+.theme-neon .tile-16 { color: #FFA500; }
+.theme-neon .tile-32 { color: #FF00FF; }
+.theme-neon .tile-64 { color: #FF0000; }
+.theme-neon .tile-128 { color: #00FFFF; font-size: 28px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-256 { color: #00FF00; font-size: 28px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-512 { color: #FFFF00; font-size: 28px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-1024 { color: #FFA500; font-size: 24px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-2048 { color: #FF00FF; font-size: 24px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-4096 { color: #FF0000; font-size: 24px; animation: neon-pulse 2s ease-in-out infinite; }
+.theme-neon .tile-8192 {
+  color: #FFFFFF;
+  font-size: 24px;
+  background: linear-gradient(45deg, #FF00FF, #00FFFF);
+  animation: neon-glow 1s ease-in-out infinite;
+}
+
+.theme-neon .tile-merged {
+  animation: merge-pop 0.25s cubic-bezier(0.39, 0.575, 0.565, 1), neon-flash 0.5s ease;
+}
+
+.theme-neon .board {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00FFFF;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+}
+
+.theme-neon .cell {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+/* 复古像素模式已移除 */
+
+/* ========================== 渐变色主题 ========================== */
+.theme-gradient .tile {
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.18s ease;
+}
+
+.theme-gradient .tile-2 { background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%); }
+.theme-gradient .tile-4 { background: linear-gradient(135deg, #FF9A9E 0%, #FECFef 100%); }
+.theme-gradient .tile-8 { background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%); }
+.theme-gradient .tile-16 { background: linear-gradient(135deg, #D4FC79 0%, #96E6A1 100%); }
+.theme-gradient .tile-32 { background: linear-gradient(135deg, #FDC830 0%, #F37335 100%); }
+.theme-gradient .tile-64 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.theme-gradient .tile-128 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); font-size: 28px; }
+.theme-gradient .tile-256 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); font-size: 28px; }
+.theme-gradient .tile-512 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); font-size: 28px; }
+.theme-gradient .tile-1024 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); font-size: 24px; }
+.theme-gradient .tile-2048 { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); font-size: 24px; }
+.theme-gradient .tile-4096 { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); font-size: 24px; }
+.theme-gradient .tile-8192 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 24px;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+.theme-gradient .tile-merged {
+  animation: merge-pop 0.25s cubic-bezier(0.39, 0.575, 0.565, 1), gradient-flash 0.5s ease;
+}
+
+.theme-gradient .board {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.theme-gradient .cell {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 合并动画 - 与完全玻璃效果文件夹中的实现一致 */
+@keyframes merge-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* 发光动画 - 与完全玻璃效果文件夹中的实现一致 */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.7); }
+  50% { box-shadow: 0 0 40px rgba(255, 215, 0, 1); transform: scale(1.02); }
+}
+
+/* 暗黑霓虹灯主题动画 */
+@keyframes neon-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; box-shadow: 0 0 20px currentColor; }
+}
+
+@keyframes neon-glow {
+  0%, 100% { box-shadow: 0 0 20px #FF00FF, 0 0 40px #00FFFF; }
+  50% { box-shadow: 0 0 40px #FF00FF, 0 0 80px #00FFFF; transform: scale(1.05); }
+}
+
+@keyframes neon-flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* 复古像素模式动画已移除 */
+
+/* 渐变色主题动画 */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes gradient-flash {
+  0% { background-opacity: 1; }
+  50% { background-opacity: 0.8; }
+  100% { background-opacity: 1; }
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+/* 响应式调整主题按钮 */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 10px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
 /* Liquid Glass效果灵感来源于苹果公司的设计语言，此处仅为学习与个人项目演示目的进行视觉实现，并未用于任何商业用途。*/
